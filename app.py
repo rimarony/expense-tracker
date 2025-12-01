@@ -37,6 +37,16 @@ def add_expense():
     category = request.form['category']
     description = request.form['description']
     date = request.form['date']
+    
+@app.route('/delete/<int:id>')
+def delete_expense(id):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+    c.execute("DELETE FROM expenses WHERE id = ?", (id,))
+    conn.commit()
+    conn.close()
+    return redirect('/')
+
 
     conn = sqlite3.connect(DB)
     c = conn.cursor()
