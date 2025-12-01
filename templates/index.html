@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+        }
+        h1 { 
+            text-align: center; 
+        }
+        form {
+            margin-bottom: 30px;
+            background: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, select {
+            padding: 10px;
+            width: 95%;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Expense Tracker</h1>
+
+    <!-- Add Expense Form -->
+    <form action="/add" method="POST">
+
+        <label>Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+
+        <label>Category:</label>
+        <input type="text" name="category" placeholder="Food, Travel, Shopping" required>
+
+        <label>Description:</label>
+        <input type="text" name="description" placeholder="Optional description">
+
+        <label>Date:</label>
+        <input type="date" name="date" required>
+
+        <button type="submit">Add Expense</button>
+    </form>
+
+
+    <!-- Expense Table -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+
+        {% for item in expenses %}
+        <tr>
+            <td>{{ item[0] }}</td>  <!-- id -->
+            <td>₹{{ item[1] }}</td> <!-- amount -->
+            <td>{{ item[2] }}</td>  <!-- category -->
+            <td>{{ item[3] }}</td>  <!-- description -->
+            <td>{{ item[4] }}</td>  <!-- date -->
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
